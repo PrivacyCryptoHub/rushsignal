@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <title>RUSH</title>
 
-  <!-- PREVIEW (WhatsApp / iMessage / jne) -->
+  <!-- PREVIEW -->
   <meta property="og:title" content="$RUSH">
   <meta property="og:description" content="They’re starting to realize.">
-  <meta property="og:image" content="https://privacycryptohub.github.io/rushsignal/rush.jpg?v=4">
+  <meta property="og:image" content="https://privacycryptohub.github.io/rushsignal/preview.jpg?v=5">
   <meta property="og:url" content="https://privacycryptohub.github.io/rushsignal">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -18,28 +18,58 @@
       font-family: Arial, sans-serif;
       color: white;
       text-align: center;
-
       background: url('bg.jpg') no-repeat center center/cover;
       height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
+    }
+
+    /* ✨ liikkuva taustakerros */
+    .sparkles {
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,255,136,0.15) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: move 20s linear infinite;
+    }
+
+    @keyframes move {
+      from { transform: translate(0,0); }
+      to { transform: translate(-100px,-100px); }
     }
 
     .overlay {
+      position: relative;
       background: rgba(0,0,0,0.7);
       padding: 40px;
       border-radius: 20px;
+      backdrop-filter: blur(6px);
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity:0; transform: scale(0.9); }
+      to { opacity:1; transform: scale(1); }
     }
 
     h1 {
       font-size: 60px;
       color: #ffe600;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ffe600; }
+      to { text-shadow: 0 0 30px #ffe600, 0 0 60px #ffe600; }
     }
 
     p {
       margin-top: 10px;
       font-size: 18px;
+      opacity: 0.9;
     }
 
     .contract {
@@ -47,6 +77,13 @@
       font-size: 14px;
       word-break: break-all;
       color: #00ff88;
+      animation: pulseText 2s infinite;
+    }
+
+    @keyframes pulseText {
+      0% { opacity: 0.6; }
+      50% { opacity: 1; }
+      100% { opacity: 0.6; }
     }
 
     .btn {
@@ -58,15 +95,43 @@
       font-weight: bold;
       text-decoration: none;
       border-radius: 10px;
+      transition: 0.2s;
+      animation: pulseBtn 2s infinite;
+    }
+
+    @keyframes pulseBtn {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
 
     .btn:hover {
       background: #00cc6a;
+      transform: scale(1.1);
     }
+
+    /* 🚀 pieni "pump line" efekti */
+    .line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #00ff88, transparent);
+      animation: pump 2s linear infinite;
+    }
+
+    @keyframes pump {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
   </style>
 </head>
 
 <body>
+
+  <div class="sparkles"></div>
 
   <div class="overlay">
     <h1>$RUSH</h1>
@@ -79,6 +144,8 @@
     <a class="btn" href="https://join.pump.fun/HSag/41xc0qpt" target="_blank">
       BUY NOW
     </a>
+
+    <div class="line"></div>
   </div>
 
 </body>
